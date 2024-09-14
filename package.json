@@ -1,0 +1,48 @@
+{
+  "name": "wing-timer",
+  "version": "0.0.1",
+  "description": "JavaScript Timeout or Interval",
+  "keywords": [
+    "timer",
+    "Timeout",
+    "Interval",
+    "wing"
+  ],
+  "types": "dist/wing-timer.d.ts",
+  "main": "dist/wing-timer.es.js",
+  "module": "dist/wing-timer.es.js",
+  "unpkg": "dist/wing-timer.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "run-s build-dts build-ts build-rollup",
+    "build-ts": "tsc",
+    "build-dts": "rollup -c rollup.dts.config.js",
+    "build-rollup": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wayley/wing-timer.git"
+  },
+  "author": {
+    "name": "Robben Wadlay",
+    "email": "robbenwadlay@163.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Wayley/wing-timer/issues"
+  },
+  "homepage": "https://github.com/Wayley/wing-timer#readme",
+  "dependencies": {
+    "wing-register":"0.0.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.5",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.34.2",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "typescript": "^5.2.2"
+  }
+}
