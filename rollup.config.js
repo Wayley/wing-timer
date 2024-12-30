@@ -1,31 +1,29 @@
-import { terser } from 'rollup-plugin-terser';
-const name = '$WingAsyncRetry';
+import terser from '@rollup/plugin-terser';
+import typescript from '@rollup/plugin-typescript';
+import { dts } from 'rollup-plugin-dts';
 
-export default {
-  input: 'temp/index.js',
-  output: [
-    {
-      file: 'dist/wing-timer.js',
-      format: 'umd',
-      name,
-    },
-    {
-      file: 'dist/wing-timer.es.js',
-      format: 'es',
-    },
-    {
-      file: 'dist/wing-timer.amd.js',
-      format: 'amd',
-    },
-    {
-      file: 'dist/wing-timer.cjs.js',
-      format: 'cjs',
-    },
-    {
-      file: 'dist/wing-timer.iife.js',
-      format: 'iife',
-      name,
-    },
-  ],
-  plugins: [terser()],
-};
+const name = 'wing-timer';
+const input = `src/index.ts`;
+
+export default [
+  {
+    input,
+    output: [{ file: `dist/index.d.ts`, format: 'es' }],
+    plugins: [dts()],
+  },
+  {
+    input,
+    output: [{ file: `dist/index.es.js`, format: 'es' }],
+    plugins: [terser(), typescript()],
+  },
+  {
+    input,
+    output: [{ file: `dist/index.cjs.js`, format: 'cjs' }],
+    plugins: [terser(), typescript()],
+  },
+  {
+    input,
+    output: [{ file: `dist/index.umd.js`, format: 'umd', name: name.replaceAll(/-|\./g, '_') }],
+    plugins: [terser(), typescript()],
+  },
+];
